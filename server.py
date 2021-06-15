@@ -30,6 +30,7 @@ def handle_client(conn, addr):
                     print("Connection refused: invalid physical address")
             if msg == DISCONNECT_MESSAGE:
                 connected = False
+                print(f"[{addr}] {msg}")
             else: 
                 print(f"[{addr}] {msg}")
             conn.send("Msg received".encode(FORMAT))
