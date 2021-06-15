@@ -11,11 +11,12 @@ ADDR = (SERVER, PORT)
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDR)
 
-def auth(mac):
-    mad = mac.enconde(FORMAT)
-    madlen = '17'.encode(FORMAT)+b' '*47
+def auth(msg):
+    mad = msg.encode(FORMAT)
+    madlen = str(len(mad)).encode(FORMAT)+b' '*47
     client.send(madlen)
     client.send(mad)
+    print(client.recv(2048).decode(FORMAT))
 
 def send(msg):
     message = msg.encode(FORMAT)
@@ -26,14 +27,13 @@ def send(msg):
     client.send(message)
     print(client.recv(2048).decode(FORMAT))
 
+macad = gma()
 
-auth(gma())
-
+auth (macad)
 input()
 send("Hello")
 input()
 send("I made it!")
 input()
 send("Bye")
-
 send(DISCONNECT_MESSAGE)

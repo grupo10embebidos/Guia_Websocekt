@@ -15,6 +15,7 @@ Alert = True
 def handle_client(conn, addr):
     print(f"[NEW CONNECTION] {addr} connected.")
     connected = True
+    global Alert
     while connected:
         msg_length = conn.recv(HEADER).decode(FORMAT)
         if msg_length:
